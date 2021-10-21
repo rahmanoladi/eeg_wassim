@@ -1,7 +1,7 @@
 1. Something
 
-1) Something
-2) Something
+i) Something
+ii) Something
   
 2. Something
 
