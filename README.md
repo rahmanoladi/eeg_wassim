@@ -1,7 +1,5 @@
-1. Item1
-  1.1) SubItemA
-  1.2) SubItemB
-  
-    - wat
-      - inception noise
+1. Something
+  1) Something
+  2) Something
+2. Something
 
