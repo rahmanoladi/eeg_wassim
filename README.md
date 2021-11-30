@@ -33,10 +33,7 @@ Each EEG signal in the dataset has 19 channels, and lasts a duration of one seco
 
 My training pipeline involves two main stages: feature extraction and classification. In the feature extraction stage, for each of the 19 channels in the data, I first compute the power spectral densities (PSD) of the input EEG signal, using the Welch function available in the scipy module. Then, for each channel, I divide the resulting frequency spectrum into eleven frquency bands, and use Simpson's formula to compute the area under the implicit PSD graph; these areas give the band powers associated with the pertinent frequency bands. This results in a 19 by 11 matrix of band powers (i.e. 19 channels and 11 bands). Next, I concatenate the rows of this matrix to obtain a 209-dimensional feature vector which I then pass into the classifier in the next stage of the pipeline. In the next stage of the pipeline, after some experimentation, I found that what works best is a random forest classifier. I harness the in-built implementation of the random forest classifier provided by Sklearn, and found that this achieves an **impeccable, perfect classification accuracy of 100%** on the training dataset, while also yielding a 95% classification accuracy on the test dataset. To reproduce my results, please run the **eeg_band_power_random_forest.ipynb** Python notebook in the codes folder of this github. The notebook has been tested in a with the following installed:
 - Python 3.6.13
-- Scikit-learn 0.24.2
-- 
+- scikit-learn 0.24.2
+- scipy 1.5.4
 
-# Environment
-The Jupyter notebook has been tested in a Conda environment with the following installed:
-- Python 3.6.13
-- Scikit-learn 0.24.2
+
