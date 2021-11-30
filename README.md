@@ -11,6 +11,7 @@ To quickly test out the model, copy the two lines below (at once, not one after 
 ```
 curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
 -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
+```
     
      
 
