@@ -24,7 +24,7 @@ In case you wish to test the model with a test set randomly sampled from the tes
 curl -d '{"url":"https://hypotheticalserver.com/sample_data.csv"}' \ 
 -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "sample_predictions.txt"
 ```
-Certainly, it is clear that, before running the lines above, you would need to replace **https://hypotheticalserver.com/sample_data.csv** with the real URL associated with your uploaded data. Upon running the above two lines in the terminal, you the API's output is written to the file **sample_predictions.txt** in the current directory. You can compare the predictions in this file with the labels in the **ground_truth.csv** file, which you got earlier from running the  ground truth's you obtained earlier by running the **eeg_data_prep.ipynb** notebook.    
+Certainly, it is clear that, before running the lines above, you would need to replace **https://hypotheticalserver.com/sample_data.csv** with the real URL associated with your uploaded data. Upon running the above two lines in the terminal, you the API's output is written to the file **sample_predictions.txt** in the current directory. You can compare the predictions in this file with the labels in the **ground_truth.csv** file, which you got earlier from running the **eeg_data_prep.ipynb** notebook.    
 
 
 # Brief Description of Training Techniques
