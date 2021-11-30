@@ -5,12 +5,17 @@ This repo presents the API of a model I trained and deployed to the AWS cloud, f
 3. Class **2** which denotes EEG signals for **electrographic seizures**. 
 4. Class **3** which denotes **video-detected seizures**.
 
-normal or epileptic classes. I trained th
-This repo contains a Jupyter notebook (named band_power_random_forest.ipynb and located in the codes folder) for classifying the publicly available [Epileptic Patients' Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1), which was donated to the Mendeley datasets repository by American University in Beirut's researcher, [Professor Nasreddine Wassim](https://www.emedevents.com/speaker-profile/wassim-nasreddine). The techniques used in the Jupyter notebook successfully achieved a **perfect classification accuracy of 100%** on the training portion of the dataset, while achieving a classification accuracy of **95%** on the test portion.The dataset has four classes:
-1. Class **0** which denotes normal, **non-epileptic**, EEG signals; there are 3,895 samples in this class.
-2. Class **1** which denotes EEG signals for **Complex Partial Seizures**; there are 3,034 samples in this class.
-3. Class **2** which denotes EEG signals for **electrographic seizures**; there are 705 samples in this class. 
-4. Class **3** which denotes **video-detected seizures** with no visual change over EEG; there are 111 samples in this class.
+Towards training the model, I employed the publicly available [Epileptic EEG Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1), which was donated to the Mendeley datasets repository by American University in Beirut's researcher, [Professor Nasreddine Wassim](https://www.emedevents.com/speaker-profile/wassim-nasreddine). The trained model successfully achieved a **perfect classification accuracy of 100%** on the training portion of the dataset, while achieving a classification accuracy of **95%** on the test portion.
+
+To quickly test out the model, copy the two lines below (at once, not one after the other) and paste them in a terminal:
+
+curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
+-X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
+
+The effect of running the above two lines is to invoke the model's API which lives at https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod with some test data, containing 50 EEG samples drawn randomly from the test partition of the aforementioned Epileptic EEG Dataset, which I put in my Google cloud storage bucket at https://storage.googleapis.com/eeg_test_data/data_slice_50.csv. The result of the API invocation is then stored in a file named "predictions_50.txt" in the current directory of the user's local machine. To compare the model's predictions with the ground truth, I have put the ground truths for the test data in a file at this [URL](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt). You may download [it](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt) and compare with the model's prediction available
+in the "predictions_50.txt". 
+
+
 
 Further, each EEG signal in the dataset has 19 channels, and lasts a duration of one second. Because the signals were sampled at 500Hz, each sample in the dataset has 500 entries per channel. This is why the training data is stored in a 3-d numpy array named **x_train[sample_index, channel_index, time_index]**.For more info about the dataset, please read the accompanying documentation [here](https://data.mendeley.com/public-files/datasets/5pc2j46cbc/files/6f59035d-7d61-40cf-8491-a58cc77d7818/file_downloaded).
 
