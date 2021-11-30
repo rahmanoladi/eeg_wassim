@@ -9,10 +9,9 @@ Towards training the model, I employed the publicly available [Epileptic EEG Dat
 
 To quickly test out the model, copy the two lines below (at once, not one after the other) and paste both in a terminal:
 
-
-
-  curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
-  -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
+    curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
+    
+    -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
 
 
 The effect of running the above two lines is to invoke the model's API which lives at https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod with some test data, containing 50 EEG samples drawn randomly from the test partition of the aforementioned Epileptic EEG Dataset, which I put in my Google cloud storage bucket at https://storage.googleapis.com/eeg_test_data/data_slice_50.csv. The result of the API invocation is then stored in a file named "predictions_50.txt" in the current directory of the user's local machine. To compare the model's predictions with the ground truth, I have put the ground truths for the test data in a file at this [URL](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt). You may download [it](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt) and compare with the model's prediction available
