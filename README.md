@@ -1,4 +1,11 @@
 # Introduction
+This repo presents the API of a model I trained and deployed to the AWS cloud, for classifying EEG signals into one of four classes:
+1. Class **0** which denotes normal, **non-epileptic**, EEG signals.
+2. Class **1** which denotes EEG signals for **Complex Partial Seizures**.
+3. Class **2** which denotes EEG signals for **electrographic seizures**. 
+4. Class **3** which denotes **video-detected seizures**.
+
+normal or epileptic classes. I trained th
 This repo contains a Jupyter notebook (named band_power_random_forest.ipynb and located in the codes folder) for classifying the publicly available [Epileptic Patients' Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1), which was donated to the Mendeley datasets repository by American University in Beirut's researcher, [Professor Nasreddine Wassim](https://www.emedevents.com/speaker-profile/wassim-nasreddine). The techniques used in the Jupyter notebook successfully achieved a **perfect classification accuracy of 100%** on the training portion of the dataset, while achieving a classification accuracy of **95%** on the test portion.The dataset has four classes:
 1. Class **0** which denotes normal, **non-epileptic**, EEG signals; there are 3,895 samples in this class.
 2. Class **1** which denotes EEG signals for **Complex Partial Seizures**; there are 3,034 samples in this class.
