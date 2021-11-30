@@ -10,7 +10,6 @@ Towards training the model, I employed the publicly available [Epileptic EEG Dat
 To quickly test out the model, copy the two lines below (at once, not one after the other) and paste both in a terminal:
 
     curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
-    
     -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
 
 
