@@ -7,7 +7,7 @@ This repo presents the API of a model I trained and deployed to the AWS cloud, f
 
 Towards training the model, I employed the publicly available [Epileptic EEG Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1), which was donated to the Mendeley datasets repository by American University in Beirut's researcher, [Professor Nasreddine Wassim](https://www.emedevents.com/speaker-profile/wassim-nasreddine). The trained model successfully achieved a **perfect classification accuracy of 100%** on the training portion of the dataset, while achieving a classification accuracy of **95%** on the test portion.
 
-To quickly test out the model, copy the two lines below (at once, not one after the other) and paste both in a terminal at once:
+To quickly test out the model, copy the two lines below (please copy both lines at once, not one after the other) and paste both in a terminal at once:
 ```
 curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
 -X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
