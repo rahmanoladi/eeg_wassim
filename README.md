@@ -7,26 +7,6 @@ This repo presents the API of a model I trained and deployed to the AWS cloud, f
 
 Towards training the model, I employed the publicly available [Epileptic EEG Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1), which was donated to the Mendeley datasets repository by American University in Beirut's researcher, [Professor Nasreddine Wassim](https://www.emedevents.com/speaker-profile/wassim-nasreddine). The trained model successfully achieved a **perfect classification accuracy of 100%** on the training portion of the dataset, while achieving a classification accuracy of **95%** on the test portion.
 
-To quickly test out the model, copy the two lines below (please copy both lines at once, not one after the other) and paste both in a Linux terminal at once:
-```
-curl -d '{"url":"https://storage.googleapis.com/eeg_test_data/data_slice_50.csv"}' \ 
--X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "predictions_50.txt"
-```
-    
-     
-The above two lines invoke the model's API which lives at https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod with some test data, containing 50 EEG samples drawn randomly from the test partition of the aforementioned Epileptic EEG Dataset; I uploaded the randomly drawn samples to my Google cloud storage bucket at https://storage.googleapis.com/eeg_test_data/data_slice_50.csv. The output of the API invocation is then stored in a file named "predictions_50.txt" in the current directory of the user's local machine. To compare the model's predictions with the ground truth, I have put the ground truths associated with the 50 EEG random samples in a file at this [URL](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt). You may download [it](https://storage.googleapis.com/eeg_test_data/ground_truth_50.txt) and compare with the model's prediction available
-in the "predictions_50.txt". Upon comparison, you should find that, out of the fifty predictions made by the model, the model gets 48 of them correctly, missing only two of them. Specifically, the model misses only the 35-th and 46-th test samples. 
-
-# How to test the API with your own test data randomly sampled from the Epileptic EEG Dataset
-In case you wish to test the model with a test set randomly sampled from the test partition of the Epileptic EEG Dataset, here is how to go about it. As a pre-requisite, you need to have Jupyter Notebook installed on your local machine. In addition, you need to obtain the Python notebook named **eeg_data_prep.ipynb** in the codes folder of this github. Please obtain this Python notebook either by cloning this github, or by directly downloading the notebook file itself. Next, to better understand the workings of the downloaded notebook, please read the comments at the top of the notebook. After that, you may simply run the notebook. The notebook extracts a random subset of data from the test partition of the Epileptic EEG Dataset, and saves the extracted random subset to a file named **data_slice.csv** on the user's local computer. Additionally, the notebook also saves the ground truth labels associated with the extracted random subset to a file named "ground_truth.txt". After running the notebook, the user should upload the output file, **data_slice.csv**, to some storage server on the web, and then make a note of the URL associated with the uploaded file. For illustrational purposes, let's suppose the URL is **https://hypotheticalserver.com/sample_data.csv**, then to invoke the EEG model's API with the uploaded data, you should simply paste the two lines below into a Linux terminal (please copy both lines at once and paste both of them at once into the terminal; do not copy the lines one after the other):
-
-```
-curl -d '{"url":"https://hypotheticalserver.com/sample_data.csv"}' \ 
--X POST https://1xew78khbd.execute-api.us-east-1.amazonaws.com/prod -o "sample_predictions.txt"
-```
-Certainly, it is clear that, before running the lines above, you would need to replace **https://hypotheticalserver.com/sample_data.csv** with the real URL associated with your uploaded data. Upon running the above two lines in the terminal, you the API's output is written to the file **sample_predictions.txt** in the current directory. You can compare the predictions in this file with the labels in the **ground_truth.csv** file, which you got earlier from running the **eeg_data_prep.ipynb** notebook.     
-
-
 # Brief Description of Training Techniques
 Towards training the model, I employed the publicly available [Epileptic EEG Dataset](https://data.mendeley.com/datasets/5pc2j46cbc/1).
 Each EEG signal in the dataset has 19 channels, and lasts a duration of one second. Because the signals were sampled at 500Hz, each sample in the dataset has 500 entries per channel. This is why the training data is stored in a 3-d numpy array named **x_train[sample_index, channel_index, time_index]**.For more info about the dataset, please read the accompanying documentation [here](https://data.mendeley.com/public-files/datasets/5pc2j46cbc/files/6f59035d-7d61-40cf-8491-a58cc77d7818/file_downloaded).
